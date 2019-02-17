@@ -47,9 +47,16 @@ let Spotify = {
         }));
       });
   },
-  savePlaylist(name, trackURIs) {
-    if (!name || !trackURIs.length) {
-      return;
+  async savePlaylist(name, trackURIs) {
+    console.log(name, typeof name);
+    if (!name && !trackURIs.length) {
+      throw new Error(
+        'Please add at least one track to the playlist and a playlist name.'
+      );
+    } else if (!trackURIs.length) {
+      throw new Error('Please add at least one track to the playlist.');
+    } else if (!name) {
+      throw new Error('Please enter a playlist name.');
     }
 
     const UserAccessToken = Spotify.getAccessToken();

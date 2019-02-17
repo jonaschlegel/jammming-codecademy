@@ -10,7 +10,7 @@ class App extends Component {
     super(props);
     this.state = {
       searchResults: [],
-      playlistName: 'New Playlist',
+      playlistName: '',
       playlistTracks: []
     };
   }
@@ -43,12 +43,16 @@ class App extends Component {
     const trackURIs = this.state.playlistTracks.map(track => {
       return track.uri;
     });
-    Spotify.savePlaylist(this.state.playlistName, trackURIs).then(() => {
-      this.setState({
-        playlistName: 'New Playlist',
-        playlistTracks: []
+    Spotify.savePlaylist(this.state.playlistName, trackURIs)
+      .then(() => {
+        this.setState({
+          playlistName: '',
+          playlistTracks: []
+        });
+      })
+      .catch(err => {
+        alert(err.message);
       });
-    });
   };
   render() {
     return (

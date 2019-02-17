@@ -21,6 +21,10 @@
   color: #fff;
 }
 
+.Playlist input::placeholder {
+  font-style: italic;
+}
+
 .Playlist-save {
   cursor: pointer;
   width: 10rem;
