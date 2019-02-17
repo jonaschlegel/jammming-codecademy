@@ -51,7 +51,9 @@ class App extends Component {
         });
       })
       .catch(err => {
-        alert(err.message);
+        if (err.message) {
+          alert(err.message);
+        }
       });
   };
   render() {

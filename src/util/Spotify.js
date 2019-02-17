@@ -48,7 +48,6 @@ let Spotify = {
       });
   },
   async savePlaylist(name, trackURIs) {
-    console.log(name, typeof name);
     if (!name && !trackURIs.length) {
       throw new Error(
         'Please add at least one track to the playlist and a playlist name.'
@@ -57,6 +56,10 @@ let Spotify = {
       throw new Error('Please add at least one track to the playlist.');
     } else if (!name) {
       throw new Error('Please enter a playlist name.');
+    } else if (
+      !window.confirm('Do you really want to save this playlist to Spotify?')
+    ) {
+      throw new Error();
     }
 
     const UserAccessToken = Spotify.getAccessToken();
